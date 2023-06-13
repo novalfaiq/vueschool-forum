@@ -13,7 +13,7 @@
                         </router-link>
                     </p>
                     <p class="text-faded text-xsmall">
-                        By <a href="#">{{ userById(thread.userId).name }}</a>, {{ thread.publishedAt }}.
+                        By <a href="#">{{ userById(thread.userId).name }}</a>, <AppDate :timestamp="thread.publishedAt" />.
                     </p>
                 </div>
 
@@ -28,7 +28,9 @@
                         <p class="text-xsmall">
                             <a href="#">{{ userById(thread.userId).name }}</a>
                         </p>
-                        <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+                        <p class="text-xsmall text-faded">
+                            <AppDate :timestamp="thread.publishedAt" />
+                        </p>
                     </div>
                 </div>
             </div>
@@ -46,12 +48,7 @@ const props = defineProps({
     }
 })
 
-const posts = sourceData.posts
 const users = sourceData.users
-
-const postById = (postId) => {
-    return posts.find(p => p.id === postId)
-}
 
 const userById = (userId) => {
     return users.find(u => u.id === userId)
